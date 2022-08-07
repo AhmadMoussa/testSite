@@ -60,12 +60,12 @@ function makeSketch(){
   makeBackgroundDecoration()
 
   // make the shadow, should encapsulate this somehow
-  pg.translate(120*scale,160*scale)
+  pg.translate(pg_sizex/24*scale,pg_sizex/18*scale)
   ctx.shadowBlur = shadowBlurAmount/2
   fillRect(pg_sizex/2-divX*spacing/2,pg_sizey/2-divY*spacing/2,divX*spacing, divY*spacing, spacing/8, 0, 'black', 'nostroke')
   makeFringes('background');
   makeCornerFringes('background');
-  pg.translate(-120*scale,-160*scale)
+  pg.translate(-pg_sizex/24*scale,-pg_sizex/18*scale)
 
   // generate the tiles and the fringes
   ctx.shadowBlur = shadowBlurAmount
