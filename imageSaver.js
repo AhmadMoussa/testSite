@@ -10,7 +10,7 @@ function keyPressed() {
   Proceeed at own risk though, need to set things from 'parameters.js' and call 'makeSketch()'
 */
 function saveImage() {
-  save(pg, 'pix_' + (pg_size) + '_resolution_' + (20 * scale) + '_cm_300DPI.png')
+  save(pg, 'exotic_quarpet_'+pg_sizex+'x'+pg_sizey+'.png')
   console.log('DONE!')
 }
 

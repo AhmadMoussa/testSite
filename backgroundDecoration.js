@@ -1,6 +1,6 @@
 function makeBackgroundDecoration(){
 
-  let background_pad = bp = pg_sizex/47.24
+  let background_pad = bp = pg_size/47.24
 
   pg.push()
 

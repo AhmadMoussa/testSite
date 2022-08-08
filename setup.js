@@ -53,7 +53,8 @@ function parameterSetup() {
     aspect_ratio = '5:4'
 
     if(divX>divY*2){
-      widMod = 1.5
+      heiMod = 0.9
+      widMod = 1.4
       sW += 2
 
       aspect_ratio = '3:2'
@@ -68,7 +69,8 @@ function parameterSetup() {
     aspect_ratio = '4:5'
 
     if(divY>divX*2){
-      heiMod = 1.5
+      widMod = 0.9
+      heiMod = 1.4
       sW += 2
 
       aspect_ratio = '2:3'
@@ -77,8 +79,8 @@ function parameterSetup() {
   }
 
   if(widMod == 1 && heiMod == 1){
-    widMod = 1.25
-    heiMod = 1.25
+    widMod = 1.12
+    heiMod = 1.12
   }
 
   // CREATE CANVAS AND GRAPHICS BUFFER
@@ -128,10 +130,8 @@ function parameterSetup() {
 
   // SET PIXEL DENSITY
 
-
   pg.pixelDensity(2)
   pixelDensity(2)
-
 
   pad = pg_sizex / 6;
   if(divX > 6 || divY > 6){
@@ -156,8 +156,6 @@ function parameterSetup() {
   borstenLaenge = spacing / 5 + random(spacing/16, spacing/8)
 
   makeQuiltTiles = shuffle(makeQuiltTiles_orig, false);
-
-
 
   // determines style of border tile
   borderTypeStyle = random(['ROUNDROUND', 'ROUNDSPIKEY', 'SPIKEYROUND', 'SPIKEYSPIKEY', 'ALTERNATE'])

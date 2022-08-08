@@ -34,7 +34,7 @@ let divY;
   Shadow Blur, StrokeWeight and step size for custom line drawing functions
 */
 let shadowBlurAmount = 6 * scale
-let sW = 7.4 * scale ;
+let sW = 6.5 * scale ;
 let sW_inc = 7 * scale;
 
 
