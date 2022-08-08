@@ -1,6 +1,6 @@
 p5.disableFriendlyErrors = true;
 
-const mainSeed = fxrand() * 99999999 | 0
+const mainSeed = fxrand() * 99999999
 
 /*
   Increase this parameter to increase resolution and DPI
@@ -13,7 +13,7 @@ let scale = 1
 */
 
 let pg;
-let pg_size = 2362 * scale; // roughly 20 cm print at 300 DPI (double at pixelDensity(2))
+let pg_size = 1800 * scale; // roughly 20 cm print at 300 DPI (double at pixelDensity(2))
 
 /*
   CANVAS AND GRAPHICS BUFFER DIMENSIONS
@@ -34,7 +34,7 @@ let divY;
   Shadow Blur, StrokeWeight and step size for custom line drawing functions
 */
 let shadowBlurAmount = 6 * scale
-let sW = 7.4 * scale;
+let sW = 7.4 * scale ;
 let sW_inc = 7 * scale;
 
 

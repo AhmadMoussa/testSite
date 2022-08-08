@@ -91,31 +91,31 @@ function parameterSetup() {
   pg_sizex = ceil(pg_size * widMod);
   pg_sizey = ceil(pg_size * heiMod);
 
-  var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if(isSafari){
-    function limitSize(size, maximumPixels) {
-      console.log(size)
-      const [ width, height ] = size;
 
-      const requiredPixels = width * height;
-      if (requiredPixels <= maximumPixels) return { width, height };
-
-      const scalar = Math.sqrt(maximumPixels) / Math.sqrt(requiredPixels);
-      return {
-          width: Math.floor(width * scalar),
-          height: Math.floor(height * scalar),
-          mainSize: Math.floor(pg_size * scalar),
-      };
-    }
-
-    const maximumPixels = 4097 * 4096
-    const safariSize = limitSize([(pg_sizex/2), (pg_sizey/2)], maximumPixels)
-
-    console.log(safariSize)
-
-    pg_sizex = safariSize.width
-    pg_sizey = safariSize.height
-  }
+  // if(isSafari){
+  //   function limitSize(size, maximumPixels) {
+  //     console.log(size)
+  //     const [ width, height ] = size;
+  //
+  //     const requiredPixels = width * height;
+  //     if (requiredPixels <= maximumPixels) return { width, height };
+  //
+  //     const scalar = Math.sqrt(maximumPixels) / Math.sqrt(requiredPixels);
+  //     return {
+  //         width: Math.floor(width * scalar),
+  //         height: Math.floor(height * scalar),
+  //         mainSize: Math.floor(pg_size * scalar),
+  //     };
+  //   }
+  //
+  //   const maximumPixels = 4097 * 4096
+  //   const safariSize = limitSize([(pg_sizex/2), (pg_sizey/2)], maximumPixels)
+  //
+  //   console.log(safariSize)
+  //
+  //   pg_sizex = safariSize.width
+  //   pg_sizey = safariSize.height
+  // }
 
   pg = createGraphics(pg_sizex, pg_sizey);
 
@@ -133,14 +133,17 @@ function parameterSetup() {
   pixelDensity(2)
 
 
-  pad = pg_size / 6;
+  pad = pg_sizex / 6;
   if(divX > 6 || divY > 6){
-    pad = pg_size/8
+    pad = pg_sizex/8
   }
 
-  if(isSafari){
-    pad = pg_size/14
-  }
+  // if(isSafari){
+  //   pad = pg_sizex / 4.5;
+  //   if(divX > 6 || divY > 6){
+  //     pad = pg_sizex/5.5
+  //   }
+  // }
 
 
   spacingX = (pg_sizex - pad * 2) / divX;
@@ -179,7 +182,6 @@ function parameterSetup() {
   toggleLineStyle = true
   toggleCircleStyle = true
   toggleRectStyle = true
-
 
 }
 

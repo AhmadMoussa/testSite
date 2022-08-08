@@ -7,16 +7,17 @@ function makeBackgroundDecoration(){
   randomParticles()
 
    let randChance = random()
-  // if(randChance<0.25){
-  //   pg.scale(1, -1)
-  //   pg.translate(0, -pg_sizey)
-  // }else if(randChance<0.5){
-  //   pg.scale(-1, 1)
-  //   pg.translate(-pg_sizex, 0)
-  // }else if(randChance<0.75){
-  //   pg.scale(-1, -1)
-  //   pg.translate(-pg_sizex, -pg_sizey)
-  // }
+
+  if(randChance<0.25){
+    pg.scale(1, -1)
+    pg.translate(0, -pg_sizey)
+  }else if(randChance<0.5){
+    pg.scale(-1, 1)
+    pg.translate(-pg_sizex, 0)
+  }else if(randChance<0.75){
+    pg.scale(-1, -1)
+    pg.translate(-pg_sizex, -pg_sizey)
+  }
 
   makeSeparator()
 
@@ -71,7 +72,7 @@ function makeBackgroundDecoration(){
   }
 
 
-  drawLine(pg_sizex,pg_sizey-size-bp*2-random(bp*3),pg_sizex-size-bp*2-random(bp*3),pg_sizey)
+  drawLine(pg_sizex,pg_sizey-size-bp*2-random()*bp*3,pg_sizex-size-bp*2-random()*bp*3,pg_sizey)
 
   for(let a = PI; a < PI+PI/2; a+=PI/2/10){
     let x =  (size/2+bp/2) * cos(a)
@@ -109,6 +110,7 @@ function makeBackgroundDecoration(){
   pg.pop()
 
   let randLen = random([true, false])
+
   let sunStrokes = random([4,6])
   for(let a = 0; a < TAU; a+=TAU/sunStrokes){
     let x = pg_sizex-size/8+pg_sizex/15 * cos(a) / 2
@@ -140,7 +142,7 @@ function makeBackgroundDecoration(){
   if(random()>.5){
     let vertices = []
     let count = 0
-    let step = pg_size / 94480
+    let step = pg_sizex / 94480
     for(let l = 0; l < 1.05; l+=0.05){
 
       let x = px1 * l + px2 * (1-l)
@@ -149,9 +151,9 @@ function makeBackgroundDecoration(){
       let offset = 0
 
       if(count%2==0){
-        offset = random(bp*2)
+        offset = random()*bp*2
       }else{
-        offset = -random(bp*2)
+        offset = -random()*bp*2
       }
       //pg.point(x+offset, y+offset)
 
@@ -162,7 +164,7 @@ function makeBackgroundDecoration(){
       count++
     }
 
-    let backgroundLineSpacing = bls = pg_size / 236.2
+    let backgroundLineSpacing = bls = pg_sizex / 236.2
     for(let n = 0; n < bp; n++){
       pg.push()
 
@@ -176,7 +178,7 @@ function makeBackgroundDecoration(){
 
     pg.push()
 
-    let backgroundLineSpacing = bls = pg_size / 236.2
+    let backgroundLineSpacing = bls = pg_sizex / 236.2
     let counter = 0
 
     for(let n = 0; n < bp; n++){
@@ -223,10 +225,10 @@ function randomParticles(){
 
   pg.stroke(0)
   for(let i = 0; i < 10; i ++){
-    let x = random(pg_sizex)
-    let y = random(pg_sizey)
+    let x = random()*pg_sizex
+    let y = random()*pg_sizey
 
-    pg.strokeWeight(random(sW/2,sW*2))
+    pg.strokeWeight(map(random(),0,1,sW/2,sW*2))
     pg.point(x, y)
   }
 
@@ -250,7 +252,17 @@ function makeSeparator(){
 
   let orientationCheck = (pg_sizex < pg_sizey)
 
-  let [startX, startY, endX, endY] = (orientationCheck)?[-pad, random(pg_sizey/3, pg_sizey/3*2), pg_sizex + pad, random(pg_sizey/3, pg_sizey/2)]:[random(pg_sizex/3, pg_sizex/3*2),-pad,random(pg_sizex/3, pg_sizex/3*2),pg_sizey + pad]
+  let [startX, startY, endX, endY] = (orientationCheck)?[
+    -pad,
+    map(random(),0,1,pg_sizey/3, pg_sizey/3*2),
+     pg_sizex + pad,
+    map(random(),0,1,pg_sizey/3, pg_sizey/2)
+  ]:[
+      map(random(),0,1,pg_sizex/3, pg_sizex/3*2),
+      -pad,
+      map(random(),0,1,pg_sizex/3, pg_sizex/3*2),
+      pg_sizey + pad
+    ]
 
   let pointilator = () => {
     for(let n = 0; n < 1; n+= 0.0075){
@@ -283,7 +295,7 @@ function makeText(){
   pg.textAlign(LEFT, CENTER)
 
   let tx = fxhash+''
-  console.log(tx)
+
   let textHeight = tx.length*22
   // for(let i = 0; i < fxhash.length; i++){
   //     pg.text(tx[i], size/12+bp, pg_sizey - size/3 - size/12+bp - textHeight + i*22)

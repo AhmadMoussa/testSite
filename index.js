@@ -26,7 +26,9 @@
 
   Exotic Quarpets began as a submission to Raphaelle de Courville's weekly creative coding challenge, with the topic being 'Quilts'. Taking inspiration from the Persian rugs that we would roll out at home every winter, I tried to create an aesthetic reminiscent of those with a gen-art touch.
 
-  The generated images, depending on the aspect ratio that you get, are quite large at 5kx5k pixels, which should be sufficient for 300 DPI prints. Generating these images can take a few seconds, so please be patient. Save the high rez image by pressing S, I recommend zooming in and having a look at all the details!
+  The generated images, depending on the aspect ratio that you get, are quite large at 4kx4k pixels. Generating these images can take a few seconds depending on your device, so please be patient. Save the high rez image by pressing S, I recommend zooming in and having a look at all the details!
+
+  For an optimal viewing experience please run the token in a modern desktop browser!
 
 */
 
@@ -37,6 +39,10 @@
 let canvasReady = 0
 
 function setup() {
+  // set the random seeds
+  randomSeed(int(mainSeed))
+  noiseSeed(int(mainSeed))
+
   setupLoadingScreen()
 }
 
@@ -45,31 +51,28 @@ function setup() {
   Resetting seed at the top is very important.
 */
 function makeSketch(){
-
-  // set the random seeds
-  randomSeed(int(mainSeed))
-  noiseSeed(int(mainSeed))
-
   // initialize parameters, features and colors
   parameterSetup()
 
   colorSetup()
   setFeatures()
 
-  // generate the background graphics
+  //generate the background graphics
   makeBackgroundDecoration()
 
   // make the shadow, should encapsulate this somehow
-  pg.translate(pg_sizex/24*scale,pg_sizex/18*scale)
+  pg.translate(pg_sizex/24,pg_sizex/18)
   ctx.shadowBlur = shadowBlurAmount/2
   fillRect(pg_sizex/2-divX*spacing/2,pg_sizey/2-divY*spacing/2,divX*spacing, divY*spacing, spacing/8, 0, 'black', 'nostroke')
   makeFringes('background');
   makeCornerFringes('background');
-  pg.translate(-pg_sizex/24*scale,-pg_sizex/18*scale)
+  pg.translate(-pg_sizex/24,-pg_sizex/18)
+
 
   // generate the tiles and the fringes
   ctx.shadowBlur = shadowBlurAmount
   generateQuarpet();
+
   makeFringes();
   makeCornerFringes();
 

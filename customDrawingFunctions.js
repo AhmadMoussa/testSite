@@ -56,8 +56,10 @@ function customCircle(posx, posy, rad) {
   pg.push();
   pg.strokeWeight(0);
   pg.ellipse(posx, posy, rad);
-  for (let a = 0; a < TAU; a += TAU / (rad * scale)) {
-    let randoffr = randomGaussian(0, 0.25) + random(-0.25, 0.25);
+
+  const step = (TAU / (rad));
+  for (let a = 0; a < TAU; a += step) {
+    let randoffr = randomGaussian(0, 0.25) + map(random(),0,1,-0.25, 0.25)
     let x = posx + ((rad + randoffr) * cos(a)) / 2;
     let y = posy + ((rad + randoffr) * sin(a)) / 2;
 
@@ -69,21 +71,26 @@ function customCircle(posx, posy, rad) {
     } else {
       pg.strokeWeight(
         ((noise(x * 0.02 + offset, y * 0.02 + offset) * sW) / 4) * 3 +
-          random(sW / 4, (sW / 4) * 1.5)
+        map(random(),0,1,sW / 4, (sW / 4) * 1.5)
       );
     }
 
     pg.point(x, y);
   }
   pg.pop();
+
+
 }
 
 function customLine(px1, py1, px2, py2) {
   let offset = random(999, 99999);
   pg.push();
-  d = dist(px1, py1, px2, py2);
+  d = dist(px1, py1, px2, py2)
   ctx.shadowBlur = shadowBlurAmount * 1.25;
-  for (let l = 0; l < d; l += sW / 4) {
+  const step = sW/4
+
+
+  for (let l = 0; l < d; l += step) {
     let interp = map(l, 0, d, 0, 1);
 
     let x = px1 * interp + px2 * (1 - interp);
@@ -97,22 +104,24 @@ function customLine(px1, py1, px2, py2) {
           sW) /
           4.5) *
           3 +
-          random(sW / 4, (sW / 4) * 2) / 2
+          map(random(),0,1,sW / 4, (sW / 4) * 2) / 2
       );
     }
     let extraOffset = (eo = 0);
     if (random() > 0.995) {
-      eo = random(-5, 5);
+      eo = map(random(),0,1,-5,5);
     } else {
       eo = 0;
     }
     pg.point(
-      x + randomGaussian(0, 0.25) + random(-0.25, 0.25) + eo,
-      y + randomGaussian(0, 0.25) + random(-0.25, 0.25) + eo
+      x + randomGaussian(0, 0.25) + map(random(),0,1,-0.25, 0.25) + eo,
+      y + randomGaussian(0, 0.25) + map(random(),0,1,-0.25, 0.25) + eo
     );
   }
+
   ctx.shadowBlur = shadowBlurAmount;
   pg.pop();
+
 }
 
 function customRect(x, y, wid, hei, strokeType) {

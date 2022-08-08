@@ -220,12 +220,20 @@ function makeQuiltTile6() {
   pg.pop();
 }
 
-function interpolatedLine(px1, py1, px2, py2) {
+function interpolatedLine(px1, py1, px2, py2, hstToggle) {
   let interpx1 = px1 * 0.9 + px2 * 0.1
   let interpy1 = py1 * 0.9 + py2 * 0.1
 
   let interpx2 = px1 * 0.1 + px2 * 0.9
   let interpy2 = py1 * 0.1 + py2 * 0.9
+
+  // if(isSafari && hstToggle){
+  //   interpx1 = px1 * 0.8 + px2 * 0.2
+  //   interpy1 = py1 * 0.8 + py2 * 0.2
+  //
+  //   interpx2 = px1 * 0.2 + px2 * 0.8
+  //   interpy2 = py1 * 0.2 + py2 * 0.8
+  // }
 
   drawLine(interpx1, interpy1, interpx2, interpy2)
 }
@@ -274,9 +282,9 @@ function makeHSTTile(x, y) {
   roundedPoly(ctx, vertices, 10, 0, 0)
 
   ctx.lineWidth = sW * .85
-  interpolatedLine(-s / 4 * 3, -s / 4 * 3, -s / 4 * 3, s / 4 * 3)
-  interpolatedLine(-s / 4 * 3, s / 4 * 3, s / 4 * 3, s / 4 * 3)
-  interpolatedLine(s / 4 * 3, s / 4 * 3, -s / 4 * 3, -s / 4 * 3)
+  interpolatedLine(-s / 4 * 3, -s / 4 * 3, -s / 4 * 3, s / 4 * 3, true)
+  interpolatedLine(-s / 4 * 3, s / 4 * 3, s / 4 * 3, s / 4 * 3, true)
+  interpolatedLine(s / 4 * 3, s / 4 * 3, -s / 4 * 3, -s / 4 * 3, true)
 
   pg.push()
   pg.translate(-s / 6, s / 6)
@@ -303,9 +311,9 @@ function makeHSTTile(x, y) {
   roundedPoly(ctx, vertices, 7, 0, 0)
 
   ctx.lineWidth = sW * .85
-  interpolatedLine(-s / 4 * 1.5, -s / 4 * 1.5, -s / 4 * 1.5, s / 4 * 1.5)
-  interpolatedLine(-s / 4 * 1.5, s / 4 * 1.5, s / 4 * 1.5, s / 4 * 1.5)
-  interpolatedLine(s / 4 * 1.5, s / 4 * 1.5, -s / 4 * 1.5, -s / 4 * 1.5)
+  interpolatedLine(-s / 4 * 1.5, -s / 4 * 1.5, -s / 4 * 1.5, s / 4 * 1.5, true)
+  interpolatedLine(-s / 4 * 1.5, s / 4 * 1.5, s / 4 * 1.5, s / 4 * 1.5, true)
+  interpolatedLine(s / 4 * 1.5, s / 4 * 1.5, -s / 4 * 1.5, -s / 4 * 1.5, true)
   pg.pop()
 
   // pg.fill(getPalette(2))

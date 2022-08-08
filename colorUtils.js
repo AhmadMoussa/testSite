@@ -119,6 +119,7 @@ function h_s_lToHex(h, s, l) {
   Fetches color from palette array wraps around if out of range
 */
 function getColor(idx, type) {
+
   let col = "#00000000";
 
   if(random()>colorRat){
